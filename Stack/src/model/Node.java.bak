@@ -1,0 +1,26 @@
+package model;
+
+public class Node<T> {
+	private T value;
+	private Node<T> previousNode;
+	
+	public Node(T value) {
+		this.value = value;
+		this.previousNode = null;
+	}
+	
+	public Node(T value, Node<T> previousNode) {
+		this.value = value;
+		this.previousNode = previousNode;
+	}
+	
+	public T getValue() {return this.value;}
+	public void setValue(T value) {this.value = value;}
+	public T getPreviousNode() {return this.previousNode;}
+	public void setPreviousNode(Node<T> previousNode) {this.previousNode = previousNode;}
+	
+	@Override
+	public String toString() {
+		return value.toString();
+	}
+}

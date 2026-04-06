@@ -1,0 +1,49 @@
+package model;
+
+import model.Node;
+
+public class Stack<T> {
+	private Node<T> lastNode = null;
+	
+	// push	: Insere um elemento no topo da pilha
+	// pop	: Remove o elemento do topo da pilha, retornando-o.
+	
+	public void push(T value) {
+		Node<T> buffer = new Node<>(value);
+		if (this.lastNode == null) {
+			this.lastNode = buffer;
+		} else {
+			Node<T> previousLast = this.lastNode;
+			buffer.setPreviousNode(previousLast);
+		}
+		this.lastNode = buffer;
+	}
+	
+	public Node<T> pop() {
+		if (this.lastNode == null) {
+			return null;
+		} else {
+			Node<T> buffer = this.lastNode;
+			this.lastNode = buffer.getPreviousNode();
+			return buffer;
+		}
+	}
+	
+	@Override
+	public String toString() {
+		if (this.lastNode == null) {
+			return "[]";
+		} else {
+			StringBuilder builder = new StringBuilder("[");
+			Node<T> buffer = this.lastNode;
+			builder.append(buffer.getValue());
+			while (buffer.getPreviousNode() != null) {
+				builder.append(", ");
+				buffer = buffer.getPreviousNode();
+				builder.append(buffer.getValue());
+			}
+			builder.append("]");
+			return builder.toString();
+		}
+	}
+}
